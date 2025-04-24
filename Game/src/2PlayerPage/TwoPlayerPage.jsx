@@ -18,7 +18,10 @@ function TwoPlayerPage(){
     }
 
     function tst(e){
-        e.target.textContent=`${turnSwitcher()}`
+        let targetContent=e.target
+        if (targetContent.textContent==""){
+           targetContent.textContent=`${turnSwitcher()}`
+        }
     }
 
     return(
