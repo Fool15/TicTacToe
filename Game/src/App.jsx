@@ -3,6 +3,7 @@ import GamePage from "./GamePAge";
 import OnePlayerPage from "./OnePlayerPage";
 import TwoPlayerPage from "./2PlayerPage/TwoPlayerPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 function App() {
   return (
     <Router>

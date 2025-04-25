@@ -8,7 +8,10 @@ body {
   height: 100vh;
   width: 100%;
   margin: 0;
+  text-align: center;
 }
+
+
 
 .border-logo {
   display: flex;
@@ -70,7 +73,7 @@ body {
   flex-wrap: wrap;
 }
 
-button {
+.buttonStyle{
   margin-top: 20px;
   display: flex-start;
   justify-content: space-between;
