@@ -22,6 +22,7 @@ function TwoPlayerPage(){
             return "O"
         }
     }
+
     function callOnClick(e){
         
         function shapeDrawn(e){
@@ -33,39 +34,45 @@ function TwoPlayerPage(){
                    targetContent.textContent=`${turnSwitcher()}`
             }
         }
+
         function winCondition(){
+
+                let XorO=WhosTurn?"X":"O"
 
                 let onWin=()=>{
 
-                    console.log("win")
-                    SetWinner("Player X has won")
+                    SetWinner(`Player ${XorO} has won`)
+
                     SetWon(true)
+
                 }
-            
+
+                console.log(XorO)
+
                let buttons= document.querySelectorAll(".baseStyle")
 
-                if(buttons[0].textContent=="X"&&buttons[1].textContent=="X"&&buttons[2].textContent=="X"){
+                if(buttons[0].textContent==XorO && buttons[1].textContent==XorO && buttons[2].textContent==XorO){
                     onWin()
                 }
-                else if(buttons[3].textContent=="X"&&buttons[4].textContent=="X"&&buttons[5].textContent=="X"){
+                else if(buttons[3].textContent==XorO&&buttons[4].textContent==XorO&&buttons[5].textContent==XorO){
                     onWin()
                 }
-                else if(buttons[6].textContent=="X"&&buttons[7].textContent=="X"&&buttons[8].textContent=="X"){
+                else if(buttons[6].textContent==XorO&&buttons[7].textContent==XorO&&buttons[8].textContent==XorO){
                     onWin()
                 }
-                else if(buttons[0].textContent=="X"&&buttons[3].textContent=="X"&&buttons[6].textContent=="X"){
+                else if(buttons[0].textContent==XorO&&buttons[3].textContent==XorO&&buttons[6].textContent==XorO){
                     onWin()
                 }
-                else if(buttons[1].textContent=="X"&&buttons[4].textContent=="X"&&buttons[7].textContent=="X"){
+                else if(buttons[1].textContent==XorO&&buttons[4].textContent==XorO&&buttons[7].textContent==XorO){
                     onWin()
                 }
-                else if(buttons[2].textContent=="X"&&buttons[5].textContent=="X"&&buttons[8].textContent=="X"){
+                else if(buttons[2].textContent==XorO&&buttons[5].textContent==XorO&&buttons[8].textContent==XorO){
                     onWin()
                 }
-                else if(buttons[0].textContent=="X"&&buttons[4].textContent=="X"&&buttons[8].textContent=="X"){
+                else if(buttons[0].textContent==XorO&&buttons[4].textContent==XorO&&buttons[8].textContent==XorO){
                     onWin()
                 }
-                else if(buttons[6].textContent=="X"&&buttons[4].textContent=="X"&&buttons[2].textContent=="X"){
+                else if(buttons[6].textContent==XorO&&buttons[4].textContent==XorO&&buttons[2].textContent==XorO){
                     onWin()
                 }
             }
@@ -74,13 +81,21 @@ function TwoPlayerPage(){
             winCondition()
     }
 
+    function restart(){
+        document.querySelectorAll(".baseStyle").forEach((e)=>{
+            e.textContent=""
+            SetTurn(true)
+            SetWon(false)
+            SetWinner("")
+        })
+    }
+
     return(
         <>
 
-        <h1>Two Player Game</h1>
-
-        <h1>{WhosTurn?"Its X turn":"Its O turn"}</h1>
-        <h1>{winner}</h1>
+        <h1 style={{color:"white"}}>Two Player Game</h1>
+        <h1 style={{color:"white"}}>{WhosTurn?"Its X turn":"Its O turn"}</h1>
+        <h1 style={{color:"white"}}>{winner}</h1>
            <div className="gameContainer">
             <button className="baseStyle leftBorder topBorder" onClick={(e)=>{callOnClick(e)}}></button>
             <button className="baseStyle rightBorder topBorder leftBorder " onClick={(e)=>{callOnClick(e)}}></button>
@@ -95,7 +110,11 @@ function TwoPlayerPage(){
             <button className="baseStyle rightBorder topBorder  bottomBorder" onClick={(e)=>{callOnClick(e)}} ></button>
 
         </div>
-        <button onClick={() => navigate("/")}>{"<"}</button>
+        <br /><br />
+        <div className="buttons">
+        <button className='buttonStyle' onClick={() => navigate("/")}>{"Home"}</button>
+        <button className="buttonStyle" onClick={()=>{restart()}}>Restart</button>
+        </div>
 
         </>
     )
