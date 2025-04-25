@@ -5,6 +5,7 @@ function OnePlayerPage() {
   return (
     <div>
       <h1>One Player Game</h1>
+      <h2>omeee</h2>
       <button onClick={() => navigate("/")}>{"<"}</button>
     </div>
   );
