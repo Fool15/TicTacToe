@@ -1,32 +1,31 @@
-.gameContainer{
-    display: grid;
-    grid-template-columns: 150px 150px 150px;
-
+.gameContainer {
+  display: grid;
+  grid-template-columns: 150px 150px 150px;
 }
-.baseStyle{
-    background-color: rgba(255, 228, 196, 0);
-    width: 150px;
-    height: 150px;
-    font-size: 30px;
+.baseStyle {
+  background-color: rgba(255, 228, 196, 0);
+  width: 150px;
+  height: 150px;
+  font-size: 30px;
 }
-.topBorder{
-    border-top: 0px ;
+.topBorder {
+  border-top: 0px;
 }
-.leftBorder{
-    border-left: 0px ;
+.leftBorder {
+  border-left: 0px;
 }
-.bottomBorder{
-    border-bottom: 0px ;
+.bottomBorder {
+  border-bottom: 0px;
 }
-.rightBorder{
-    border-right: 0px ;
+.rightBorder {
+  border-right: 0px;
 }
-.navigateButton{
-    border: none;
-    width: 150px;
-    height: 50px;
-    font-size: 25px;
-    background-color: #100720;
-    border-radius: 20px;
-    color: white;
+.navigateButton {
+  border: none;
+  width: 150px;
+  height: 50px;
+  font-size: 25px;
+  background-color: #100720;
+  border-radius: 20px;
+  color: white;
 }

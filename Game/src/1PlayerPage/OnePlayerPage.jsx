@@ -1,31 +1,44 @@
-import "./TwoPlayerPage.css";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-function TwoPlayerPage() {
+import "./OnePlayerPage.css";
+import { useEffect, useState } from "react";
+function OnePlayerPage() {
   const navigate = useNavigate();
-
   let [WhosTurn, SetTurn] = useState(true);
   let [hasWon, SetWon] = useState(false);
   let [winner, SetWinner] = useState("");
   let [draw, setDraw] = useState("");
 
-  function turnSwitcher() {
-    if (WhosTurn == true) {
-      SetTurn(false);
-      return "X";
-    } else {
-      SetTurn(true);
-      return "O";
+  useEffect(() => {
+    if (!WhosTurn && !hasWon) {
+      setTimeout(() => {
+        botMove();
+      }, 500);
     }
+  }, [WhosTurn]);
+
+  function botMove() {
+    let buttons = document.querySelectorAll(".baseStyle");
+    const emptyButtons = Array.from(buttons).filter(
+      (btn) => btn.textContent === ""
+    );
+
+    if (emptyButtons.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * emptyButtons);
+    const selectedButtons = emptyButtons[randomIndex];
+    selectedButtons.textContent = "O";
+    SetTurn(true);
+    winCondition();
   }
 
   function callOnClick(e) {
+    if (!WhosTurn || hasWon) return;
     function shapeDrawn(e) {
       let targetContent = e.target;
 
-      if (hasWon == false && targetContent.textContent == "") {
-        targetContent.textContent = `${turnSwitcher()}`;
+      if (targetContent.textContent === "") {
+        targetContent.textContent = "X";
+        SetTurn(false);
+        winCondition();
       }
     }
 
@@ -104,7 +117,7 @@ function TwoPlayerPage() {
     }
 
     shapeDrawn(e);
-    winCondition();
+    setTimeout(() => winCondition(), 100);
   }
 
   function restart() {
@@ -118,8 +131,8 @@ function TwoPlayerPage() {
   }
 
   return (
-    <>
-      <h1 style={{ color: "white" }}>Two Player Game</h1>
+    <div>
+      <h1 style={{ color: "white" }}>One Player Game</h1>
       <h1 style={{ color: "white" }}>
         {WhosTurn ? "Its X turn" : "Its O turn"}
       </h1>
@@ -198,7 +211,7 @@ function TwoPlayerPage() {
           Restart
         </button>
       </div>
-    </>
+    </div>
   );
 }
-export default TwoPlayerPage;
+export default OnePlayerPage;

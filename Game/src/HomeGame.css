@@ -11,8 +11,6 @@ body {
   text-align: center;
 }
 
-
-
 .border-logo {
   display: flex;
   align-items: center;
@@ -73,7 +71,7 @@ body {
   flex-wrap: wrap;
 }
 
-.buttonStyle{
+.buttonStyle {
   margin-top: 20px;
   display: flex-start;
   justify-content: space-between;

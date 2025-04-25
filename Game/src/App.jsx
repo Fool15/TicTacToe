@@ -1,6 +1,6 @@
 import HomeGamePage from "./HomeGame";
 import GamePage from "./GamePAge";
-import OnePlayerPage from "./OnePlayerPage";
+import OnePlayerPage from "./1PlayerPage/OnePlayerPage";
 import TwoPlayerPage from "./2PlayerPage/TwoPlayerPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
