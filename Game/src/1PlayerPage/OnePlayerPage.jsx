@@ -1,46 +1,52 @@
+//import "./2Pl";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./OnePlayerPage.css";
-import { useEffect, useState } from "react";
+
 function OnePlayerPage() {
   const navigate = useNavigate();
+
   let [WhosTurn, SetTurn] = useState(true);
   let [hasWon, SetWon] = useState(false);
   let [winner, SetWinner] = useState("");
   let [draw, setDraw] = useState("");
 
-  useEffect(() => {
-    if (!WhosTurn && !hasWon) {
-      setTimeout(() => {
-        botMove();
-      }, 500);
+
+  function turnSwitcher() {
+    if (WhosTurn == true) {
+      SetTurn(false);
+      return "X";
+    } else {
+      SetTurn(true);
+      return "O";
     }
-  }, [WhosTurn]);
-
-  function botMove() {
-    let buttons = document.querySelectorAll(".baseStyle");
-    const emptyButtons = Array.from(buttons).filter(
-      (btn) => btn.textContent === ""
-    );
-
-    if (emptyButtons.length === 0) return;
-    const randomIndex = Math.floor(Math.random() * emptyButtons);
-    const selectedButtons = emptyButtons[randomIndex];
-    selectedButtons.textContent = "O";
-    SetTurn(true);
-    winCondition();
   }
 
   function callOnClick(e) {
-    if (!WhosTurn || hasWon) return;
+
+    let buttons = document.querySelectorAll(".baseStyle");
+
+    let movesAvaliable=[0,1,2,3,4,5,6,7,8]
+
     function shapeDrawn(e) {
       let targetContent = e.target;
+      
+      console.log(e)
 
-      if (targetContent.textContent === "") {
-        targetContent.textContent = "X";
-        SetTurn(false);
-        winCondition();
+      if (hasWon == false && targetContent.textContent == "") {
+        targetContent.textContent = `${turnSwitcher()}`;
       }
+
+       let randomMove=Math.floor(Math.random()*9)
+       WhosTurn=!WhosTurn
+
+      if(buttons[randomMove].textContent==""&&hasWon == false){
+        setTimeout(()=>{
+          buttons[randomMove].textContent=`${turnSwitcher()}`
+        },500)
+      }
+
     }
+    console.log(turnSwitcher())
 
     function winCondition() {
       let XorO = WhosTurn ? "X" : "O";
@@ -53,8 +59,8 @@ function OnePlayerPage() {
 
       console.log(XorO);
 
-      let buttons = document.querySelectorAll(".baseStyle");
 
+  
       if (
         buttons[0].textContent == XorO &&
         buttons[1].textContent == XorO &&
@@ -116,8 +122,12 @@ function OnePlayerPage() {
       }
     }
 
+    
     shapeDrawn(e);
-    setTimeout(() => winCondition(), 100);
+    winCondition();
+    // robotMove()
+
+
   }
 
   function restart() {
@@ -131,8 +141,8 @@ function OnePlayerPage() {
   }
 
   return (
-    <div>
-      <h1 style={{ color: "white" }}>One Player Game</h1>
+    <>
+      <h1 style={{ color: "white" }}>Two Player Game</h1>
       <h1 style={{ color: "white" }}>
         {WhosTurn ? "Its X turn" : "Its O turn"}
       </h1>
@@ -211,7 +221,7 @@ function OnePlayerPage() {
           Restart
         </button>
       </div>
-    </div>
+    </>
   );
 }
 export default OnePlayerPage;
