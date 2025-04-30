@@ -26,6 +26,7 @@ function OnePlayerPage() {
     let buttons = document.querySelectorAll(".baseStyle");
 
     function shapeDrawn(e, position) {
+
       winCondition();
       let targetContent = e.target;
       if (hasWon) return;
@@ -44,6 +45,7 @@ function OnePlayerPage() {
       console.log("all avaliable moves", movesAvaliable);
 
       let randomMove = Math.floor(Math.random() * movesAvaliable.length); //[1,2,3,4,5,6,7,8]
+
       if (hasWon == false) {
         setTimeout(() => {
           buttons[movesAvaliable[randomMove]].textContent = `${
@@ -62,78 +64,7 @@ function OnePlayerPage() {
     }
 
     function winCondition() {
-      {
-        /*let XorO = WhosTurn ? "X" : "O";
-
-      let onWin = () => {
-        SetWinner(`Player ${XorO} has won`);
-
-        SetWon(true);
-      };
-
-      console.log("X" || "O");
-
-      if (
-        buttons[0].textContent == ("X" || "O") &&
-        buttons[1].textContent == ("X" || "O") &&
-        buttons[2].textContent == ("X" || "O")
-      ) {
-        onWin();
-      } else if (
-        buttons[3].textContent == ("X" || "O") &&
-        buttons[4].textContent == ("X" || "O") &&
-        buttons[5].textContent == ("X" || "O")
-      ) {
-        onWin();
-      } else if (
-        buttons[6].textContent == ("X" || "O") &&
-        buttons[7].textContent == ("X" || "O") &&
-        buttons[8].textContent == ("X" || "O")
-      ) {
-        onWin();
-      } else if (
-        buttons[0].textContent == ("X" || "O") &&
-        buttons[3].textContent == ("X" || "O") &&
-        buttons[6].textContent == ("X" || "O")
-      ) {
-        onWin();
-      } else if (
-        buttons[1].textContent == ("X" || "O") &&
-        buttons[4].textContent == ("X" || "O") &&
-        buttons[7].textContent == ("X" || "O")
-      ) {
-        onWin();
-      } else if (
-        buttons[2].textContent == ("X" || "O") &&
-        buttons[5].textContent == ("X" || "O") &&
-        buttons[8].textContent == ("X" || "O")
-      ) {
-        onWin();
-      } else if (
-        buttons[0].textContent == ("X" || "O") &&
-        buttons[4].textContent == ("X" || "O") &&
-        buttons[8].textContent == ("X" || "O")
-      ) {
-        onWin();
-      } else if (
-        buttons[6].textContent == ("X" || "O") &&
-        buttons[4].textContent == ("X" || "O") &&
-        buttons[2].textContent == ("X" || "O")
-      ) {
-        onWin();
-      } else {
-        let isDraw = true;
-
-        buttons.forEach((btn) => {
-          if (btn.textContent === "") {
-            isDraw = false;
-          }
-        });
-
-        if (isDraw && !hasWon) {
-          setDraw("It's a draw! Restart the game!!");
-        }
-      } */
+      
         const lines = [
           [0, 1, 2],
           [3, 4, 5],
@@ -144,6 +75,7 @@ function OnePlayerPage() {
           [0, 4, 8],
           [2, 4, 6],
         ];
+        
         let buttons = document.querySelectorAll(".baseStyle");
         for (let [a, b, c] of lines) {
           const btnA = buttons[a].textContent;
@@ -166,7 +98,7 @@ function OnePlayerPage() {
             }
           }
         }
-      }
+      
     }
 
     shapeDrawn(e, position);
